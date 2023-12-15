@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --background-color: #141417;
+    --color: #ffffff;
+    --surface-color: #242429;
+
+    --bug: #a8b821;
+    --dark: #6f5848;
+    --dragon: #7038f9;
+    --electric: #f8d030;
+    --fairy: #ff9be1;
+    --fighting: #c03027;
+    --fire: #f07f2f;
+    --flying: #a890f0;
+    --ghost: #705798;
+    --grass: #78c84f;
+    --ground: #e0c069;
+    --ice: #98d8d8;
+    --normal: #a9a878;
+    --poison: #a040a1;
+    --psychic: #f85788;
+    --rock: #b7a038;
+    --steel: #b8b8d0;
+    --water: #6890f0;
+}
+
+.light {
+    --background-color: #f8f7f8;
+    --color: #000000;
+    --surface-color: #e1dee2;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--color);
+    height: 100vh;
+    transition: margin 0.3s ease;
+}
+
+header {
+    align-items: center;
+    display: grid;
+    grid-template-areas: "title title config"
+        "search search search";
+    padding: 0 2rem 1rem;
+}
+
+.heading {
+    grid-area: title;
+}
+
+.config {
+    grid-area: config;
+    justify-self: end;
+}
+
+.config button {
+    margin-right: .5rem;
+}
+
+.search {
+    align-items: center;
+    display: flex;
+    grid-area: search;
+    justify-content: center;
+}
+
+.search-bar {
+    background-color: var(--surface-color);
+    border: none;
+    border-radius: 1.5rem;
+    color: var(--color);
+    height: 2.6rem;
+    outline: none;
+    text-align: center;
+    width: 90%;
+}
+
+.material-symbols-outlined,
+.load-more-button {
+    background-color: var(--surface-color);
+    border: none;
+    color: var(--color);
+    padding: .5rem;
+}
+
+.material-symbols-outlined {
+    border-radius: 50%;
+    height: 2.6rem;
+    text-align: center;
+    width: 2.6rem;
+}
+
+.pokemon-type {
+    border-radius: .2rem;
+    font-size: .8rem;
+    margin-right: .1rem;
+    padding: .2rem;
+}
+
+.pokemon-name,
+.pokemon-types {
+    text-transform: capitalize;
+}
+
+.load-more-button {
+    border-radius: .5rem;
+}
+
+@media screen and (min-width: 580px) {
+    header {
+        grid-template-areas: "title search config config";
+        padding: 0 2rem;
+    }
+
+    .search-bar {
+        width: 90%;
+    }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- Google Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <header>
+        <div class="heading">
+            <h1>Pokedex</h1>
+        </div>
+        <div class="config">
+            <button class="material-symbols-outlined light-mode-button">light_mode</button>
+            <button class="material-symbols-outlined menu-button">menu</button>
+        </div>
+        <div class="search">
+            <input type="text" name="search-bar" class="search-bar" placeholder="Search Pokemon by name or id">
+        </div>
+    </header>
+
+    <section class="menu">
+        <div class="menu-content">
+            <div class="menu-header">
+                <h2>Choose the generation:</h2>
+                <button class="material-symbols-outlined close-button">close</button>
+            </div>
+            <div class="generations">
+                <div class="generation" data-generation-number="1">
+                    <h3>Generation I</h3>
+                </div>
+                <div class="generation" data-generation-number="2">
+                    <h3>Generation II</h3>
+                </div>
+                <div class="generation" data-generation-number="3">
+                    <h3>Generation III</h3>
+                </div>
+                <div class="generation" data-generation-number="4">
+                    <h3>Generation IV</h3>
+                </div>
+                <div class="generation" data-generation-number="5">
+                    <h3>Generation V</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="pokedex closed-menu-pokedex">
+        <ol class="pokemon-list">
+            <!-- Pokémon here -->
+        </ol>
+        <div>
+            <button class="load-more-button">Show more</button>
+        </div>
+    </main>
+</body>
+
+</html>

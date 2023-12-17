@@ -1,37 +1,95 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    padding: 0;
+}
+
+.menu {
+    display: none;
 }
 
 :root {
     --background-color: #141417;
     --color: #ffffff;
     --surface-color: #242429;
-
-    --bug: #a8b821;
-    --dark: #6f5848;
-    --dragon: #7038f9;
-    --electric: #f8d030;
-    --fairy: #ff9be1;
-    --fighting: #c03027;
-    --fire: #f07f2f;
-    --flying: #a890f0;
-    --ghost: #705798;
-    --grass: #78c84f;
-    --ground: #e0c069;
-    --ice: #98d8d8;
-    --normal: #a9a878;
-    --poison: #a040a1;
-    --psychic: #f85788;
-    --rock: #b7a038;
-    --steel: #b8b8d0;
-    --water: #6890f0;
 }
 
 .light {
-    --background-color: #f8f7f8;
-    --color: #000000;
-    --surface-color: #e1dee2;
+    --background-color: #eae8eb;
+    --color: #242429;
+    --surface-color: #f8f7f8;
+}
+
+.normal {
+    background: #f5edb3;
+}
+
+.fire {
+    background: #e9ab7e;
+}
+
+.water {
+    background: #8ec3d0;
+}
+
+.grass {
+    background: #92c9ac;
+}
+
+.electric {
+    background: #f3d67c;
+}
+
+.ice {
+    background: #a4d1e9;
+}
+
+.fighting {
+    background: #e47164;
+}
+
+.poison {
+    background: #ae6fac;
+}
+
+.ground {
+    background: #ebd8a5;
+}
+
+.flying {
+    background: #776e8a;
+}
+
+.psychic {
+    background: #e3a4b5;
+}
+
+.bug {
+    background: #add8a3;
+}
+
+.rock {
+    background: #b2afa7;
+}
+
+.ghost {
+    background: #7e78a2;
+}
+
+.dragon {
+    background: #a885a8;
+}
+
+.dark {
+    background: #585f6f;
+}
+
+.steel {
+    background: #a5b0c2;
+}
+
+.fairy {
+    background: #fad0d5;
 }
 
 body {
@@ -46,7 +104,7 @@ header {
     display: grid;
     grid-template-areas: "title title config"
         "search search search";
-    padding: 0 2rem 1rem;
+    padding: 1rem 2rem;
 }
 
 .heading {
@@ -98,6 +156,7 @@ header {
 .pokemon-type {
     border-radius: .2rem;
     font-size: .8rem;
+    font-weight: bold;
     margin-right: .1rem;
     padding: .2rem;
 }
@@ -114,7 +173,7 @@ header {
 @media screen and (min-width: 580px) {
     header {
         grid-template-areas: "title search config config";
-        padding: 0 2rem;
+        padding: 1rem 2rem;
     }
 
     .search-bar {

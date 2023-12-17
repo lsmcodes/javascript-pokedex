@@ -1,4 +1,4 @@
-import { Pokemon } from "./models/pokemon-model";
+import { Pokemon } from "./models/pokemon-model.js";
 
 class PokeApi {
     convertPokemonDataToPokemon(json) {
@@ -25,5 +25,22 @@ class PokeApi {
         pokemon.weight = json.weight;
 
         return pokemon;
+    }
+
+    async getPokemonData(pokemon) {
+        const response = await fetch(pokemon.url);
+        const responseBody = await response.json();
+        return this.convertPokemonDataToPokemon(responseBody);
+    }
+
+    async getAllPokemon(offset, limit) {
+        const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+
+        const response = await fetch(url);
+        const responseBody = await response.json();
+        const pokemonList = responseBody.results;
+        const detailRequest = await pokemonList.map((pokemon) => this.getPokemonData(pokemon));
+        const pokemonData = await Promise.all(detailRequest);
+        return pokemonData;
     }
 }

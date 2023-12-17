@@ -59,3 +59,6 @@ class PokeApi {
         }
     }
 }
+
+const pokeApi = new PokeApi();
+export { pokeApi };

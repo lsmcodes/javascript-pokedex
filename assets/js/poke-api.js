@@ -43,4 +43,19 @@ class PokeApi {
         const pokemonData = await Promise.all(detailRequest);
         return pokemonData;
     }
+
+    async getPokemon(pokemonSearch) {
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemonSearch.toLowerCase()}`;
+
+        try {
+            if (pokemonSearch > 649) {
+                throw new error;
+            }
+            const response = await fetch(url);
+            const pokemonData = await response.json();
+            return this.convertPokemonDataToPokemon(pokemonData);
+        } catch (error) {
+            return error;
+        }
+    }
 }

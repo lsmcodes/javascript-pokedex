@@ -1,0 +1,21 @@
+{
+  "name": "javascript-pokedex",
+  "version": "1.0.0",
+  "description": "Explore five generations of Pokémon with this interactive JavaScript Pokédex. Integrated with PokéApi, it offers information to learn more about your favorite Pokémon.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pokedex",
+    "pokemon",
+    "poke-api",
+    "pokemon-data",
+    "javascript",
+    "web-development"
+  ],
+  "author": "Lorena Medeiros",
+  "source": "Inspired by DIO's Trilha JS Developer - Pokedex",
+  "license": "ISC",
+  "type": "module"
+}

@@ -4,6 +4,7 @@ class PokedexConfig {
     offset = 0;
     limit = 5;
 }
+const pokedexConfig = new PokedexConfig();
 
 class Main {
     constructor() {
@@ -11,3 +12,4 @@ class Main {
         this.loadMoreButton = document.querySelector(".load-more-button");
     }
 }
+const main = new Main();

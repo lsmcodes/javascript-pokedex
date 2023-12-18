@@ -16,7 +16,7 @@ class PokeApi {
         pokemon.height = json.height;
         pokemon.name = json.name;
         pokemon.speciesUrl = json.species.url;
-        pokemon.sprite = json.sprites.other.home.front_default;
+        pokemon.sprite = json.sprites.other["official-artwork"].front_default;
         pokemon.statsNames = statsNames;
         pokemon.baseStats = baseStats;
         pokemon.types = types;

@@ -19,15 +19,15 @@ class Main {
             newPokemon.classList.add('pokemon');
 
             newPokemon.innerHTML = `
+            <div class="pokemon-image ${pokemon.type}">
+                <img src="${pokemon.sprite}" alt="${pokemon.name}">
+            </div>
             <div class="pokemon-info">
                 <span class="pokemon-number">${pokemon.id}</span>
                 <span class="pokemon-name">${pokemon.name}</span>
                 <div class="pokemon-types">
                     ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
                 </div>
-            </div>
-            <div class="pokemon-image">
-                <img src="${pokemon.sprite}" alt="${pokemon.name}">
             </div>`;
 
             this.pokemonList.appendChild(newPokemon);

@@ -1,6 +1,7 @@
 import { pokeApi } from "./poke-api.js";
 
 class PokedexConfig {
+    offsetGeneration = 0;
     offset = 0;
     limit = 4;
     maxRecords = 151;
@@ -60,3 +61,5 @@ class Main {
 }
 const main = new Main();
 main.init();
+
+export { pokedexConfig, main };

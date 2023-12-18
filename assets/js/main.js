@@ -2,7 +2,8 @@ import { pokeApi } from "./poke-api.js";
 
 class PokedexConfig {
     offset = 0;
-    limit = 5;
+    limit = 4;
+    maxRecords = 151;
 }
 const pokedexConfig = new PokedexConfig();
 
@@ -33,8 +34,28 @@ class Main {
         }));
     }
 
+    loadMorePokemons() {
+        const currentRecords = pokedexConfig.offset + pokedexConfig.limit;
+        pokedexConfig.offset = currentRecords;
+        const nextPageRecords = currentRecords + pokedexConfig.limit;
+    
+        if (nextPageRecords >= pokedexConfig.maxRecords) {
+            const newLimit = pokedexConfig.maxRecords - currentRecords;
+            this.convertPokemonToLi(pokedexConfig.offset, newLimit);
+            this.loadMoreButton.style.display = 'none';
+        } else {
+            this.convertPokemonToLi(pokedexConfig.offset, pokedexConfig.limit);
+        }
+    }
+
     init() {
         this.convertPokemonToLi(pokedexConfig.offset, pokedexConfig.limit);
+
+        if(this.loadMoreButton) {
+            this.loadMoreButton.addEventListener('click', () => {
+                this.loadMorePokemons();
+            });
+        }
     }
 }
 const main = new Main();

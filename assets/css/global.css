@@ -4,10 +4,6 @@
     padding: 0;
 }
 
-.menu {
-    display: none;
-}
-
 :root {
     --background-color: #141417;
     --color: #ffffff;

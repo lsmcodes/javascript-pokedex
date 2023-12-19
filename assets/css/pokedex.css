@@ -61,15 +61,7 @@
 }
 
 @media screen and (min-width: 760px) {
-    .opened-menu-body {
-        margin-right: 25rem;
-    }
-
-    .opened-menu-pokedex {
-        padding: 0 1rem;
-    }
-
-    .closed-menu-pokedex {
+    .pokedex {
         padding: 0 4rem 4rem;
     }
 
@@ -80,6 +72,10 @@
 }
 
 @media screen and (min-width: 1190px) {
+    .opened-menu-body {
+        margin-right: 22rem;
+    }
+
     .closed-menu-pokedex {
         padding: 0 6rem 8rem;
     }

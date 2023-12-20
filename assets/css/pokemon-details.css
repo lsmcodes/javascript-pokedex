@@ -1,0 +1,40 @@
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "statName statBar"
+}
+
+.stats-names {
+    display: grid;
+    grid-area: statName;
+    text-transform: capitalize;
+    margin-bottom: .2rem;
+}
+
+.base-stats {
+    grid-area: statBar;
+    display: grid;
+}
+
+.bar {
+    background-color: #242429;
+    height: 1rem;
+    max-width: 300px;
+    border-radius: 1rem;
+}
+
+.progress {
+    align-items: center;
+    background-color: #ffffff;
+    height: 100%;
+    border-radius: 1rem;
+    color: var(--color);
+    display: flex;
+    justify-content: end;
+    padding-right: .3rem;
+    font-size: .8rem;
+}
+
+.evolutions {
+    background-color: var(--surface-color);
+}

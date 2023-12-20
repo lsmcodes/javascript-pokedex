@@ -33,6 +33,10 @@ class Main {
                 </div>
             </div>`;
 
+            newPokemon.addEventListener('click', () => {
+                window.location.href = `pokemon-details.html?pokemonName=${pokemon.name}&theme=${this.body.classList.contains('light')?'light':'dark'}`
+            });
+
             this.pokemonList.appendChild(newPokemon);
         }));
     }
@@ -54,15 +58,24 @@ class Main {
     changeTheme() {
         this.changeThemeButton.addEventListener('click', () => {
             this.body.classList.toggle('light');
-            this.body.classList.contains('light')?
-            this.changeThemeButton.innerHTML = 'dark_mode':
-            this.changeThemeButton.innerHTML = 'light_mode';
+
+            if(this.body.classList.contains('light')) {
+                this.changeThemeButton.innerHTML = 'dark_mode';
+                localStorage.setItem('theme', 'light')
+            } else {
+                this.changeThemeButton.innerHTML = 'light_mode';
+                localStorage.removeItem('theme');
+            }
         })
     }
 
     init() {
         this.convertPokemonToLi(pokedexConfig.offset, pokedexConfig.limit);
         this.changeTheme();
+
+        if(localStorage.length === 1) {
+            this.body.classList.add(localStorage.getItem('theme'));
+        }
 
         if(this.loadMoreButton) {
             this.loadMoreButton.addEventListener('click', () => {

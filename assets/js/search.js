@@ -3,6 +3,7 @@ import { pokedexConfig, main } from "./main.js";
 
 class Search {
     constructor() {
+        this.body = document.querySelector('body');
         this.searchBar = document.querySelector('.search-bar');
     }
 
@@ -40,6 +41,10 @@ class Search {
                         ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
                     </div>
                 </div>`;
+
+                newPokemon.addEventListener('click', () => {
+                    window.location.href = `pokemon-details.html?pokemonName=${pokemon.name}&theme=${this.body.classList.contains('light')?'light':'dark'}`;
+                });
 
                 main.pokemonList.innerHTML = null;
                 main.pokemonList.appendChild(newPokemon);

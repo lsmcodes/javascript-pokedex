@@ -16,6 +16,20 @@ class PokemonDetails {
 
         this.evolution = document.querySelector('.evolution');
     }
+
+    configureTheme() {
+        const theme = this.queryString()[3];
+
+        if(theme === 'light') {
+            this.body.classList.add(theme);
+        }
+    }
+
+    queryString() {
+        const loc = location.search;
+        const query = loc.split(/[&=]/);
+        return query;
+    }
 }
 
 const pokemonDetails = new PokemonDetails();

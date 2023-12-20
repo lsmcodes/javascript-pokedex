@@ -10,6 +10,8 @@ const pokedexConfig = new PokedexConfig();
 
 class Main {
     constructor() {
+        this.body = document.querySelector('body');
+        this.changeThemeButton = document.querySelector('.change-theme-button');
         this.pokemonList = document.querySelector(".pokemon-list");
         this.loadMoreButton = document.querySelector(".load-more-button");
     }
@@ -49,8 +51,18 @@ class Main {
         }
     }
 
+    changeTheme() {
+        this.changeThemeButton.addEventListener('click', () => {
+            this.body.classList.toggle('light');
+            this.body.classList.contains('light')?
+            this.changeThemeButton.innerHTML = 'dark_mode':
+            this.changeThemeButton.innerHTML = 'light_mode';
+        })
+    }
+
     init() {
         this.convertPokemonToLi(pokedexConfig.offset, pokedexConfig.limit);
+        this.changeTheme();
 
         if(this.loadMoreButton) {
             this.loadMoreButton.addEventListener('click', () => {

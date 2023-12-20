@@ -30,6 +30,25 @@ class PokemonDetails {
         const query = loc.split(/[&=]/);
         return query;
     }
+
+    async getPokemonData(pokemonName) {
+        const pokemon = await pokeApi.getPokemon(pokemonName);
+
+        this.createPokemonDetailsHeader(pokemon);
+    }
+
+    createPokemonDetailsHeader(pokemon) {
+        this.detailsHeader.innerHTML += `
+            <div class="pokemon-image ${pokemon.type}">
+                <img class="image" src="${pokemon.sprite}" alt="">
+            </div>
+            <span class="pokemon-number">${pokemon.id}</span>
+            <h1 class="pokemon-name">${pokemon.name}</h1>
+            <div class="pokemon-types">
+                ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
+            </div>
+        `;
+    }
 }
 
 const pokemonDetails = new PokemonDetails();

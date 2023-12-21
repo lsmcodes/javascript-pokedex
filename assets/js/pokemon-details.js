@@ -44,10 +44,13 @@ class PokemonDetails {
         } else {
             pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName);
         }
+        
+        const pokemonEvolutions = await pokeApi.getPokemonEvolution(pokemonSpecies.evolutionChain);
 
         this.createPokemonDetailsHeader(pokemon);
         this.createPokemonDetailsAbout(pokemon, pokemonSpecies);
         this.createPokemonDetailsStats(pokemon);
+        this.createPokemonDetailsEvolution(pokemonEvolutions);
     }
 
     createPokemonDetailsHeader(pokemon) {
@@ -98,6 +101,21 @@ class PokemonDetails {
             progress.classList.add(`${pokemon.type}`);
 
             bar[i].appendChild(progress);
+        }
+    }
+
+    createPokemonDetailsEvolution(pokemonEvolutions) {
+        if(pokemonEvolutions instanceof Error) {
+            this.evolution.innerHTML += `This Pokémon doesn't evolve.`;
+        } else {
+            this.evolution.innerHTML += pokemonEvolutions.evolutionsName.map((evolutionsName, index) => {
+                return `
+                    <a href="pokemon-details.html?pokemonName=${evolutionsName}&theme=${this.body.classList.contains('light')?'light':'dark'}">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonEvolutions.evolutionsId[index]}.png">
+                        <h2>${evolutionsName}</h2>
+                    </a>
+                `
+            }).join('');
         }
     }
 }

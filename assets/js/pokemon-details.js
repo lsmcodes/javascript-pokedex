@@ -37,7 +37,13 @@ class PokemonDetails {
 
     async getPokemonData(pokemonName) {
         const pokemon = await pokeApi.getPokemon(pokemonName);
-        const pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName);
+        let pokemonSpecies;
+
+        if(pokemonName.search(/-/) && pokemonName.split(/-/)[1] === 'incarnate'){
+            pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName.split(/-/)[0]);
+        } else {
+            pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName);
+        }
 
         this.createPokemonDetailsHeader(pokemon);
         this.createPokemonDetailsAbout(pokemon, pokemonSpecies);

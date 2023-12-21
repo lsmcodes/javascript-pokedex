@@ -6,6 +6,7 @@ class PokemonSpecies {
     flavorText;
     genus;
     growthRate;
+    id;
     habitat;
 }
 

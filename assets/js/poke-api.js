@@ -50,6 +50,7 @@ class PokeApi {
 
         pokemonSpecies.genus = json.genera[7].genus;
         pokemonSpecies.growthRate = json.growth_rate.name;
+        pokemonSpecies.id = json.id;
 
         return pokemonSpecies;
     }

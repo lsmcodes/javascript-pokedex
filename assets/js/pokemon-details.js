@@ -37,6 +37,7 @@ class PokemonDetails {
 
         this.createPokemonDetailsHeader(pokemon);
         this.createPokemonDetailsAbout(pokemon, pokemonSpecies);
+        this.createPokemonDetailsStats(pokemon);
     }
 
     createPokemonDetailsHeader(pokemon) {
@@ -74,6 +75,19 @@ class PokemonDetails {
                 ${pokemon.abilities.map((ability) => `<span class="ability">${ability}</span>`).join(' ')}
             </div>
         `
+    }
+
+    createPokemonDetailsStats(pokemon) {
+        const bar = document.querySelectorAll('.bar');
+        for(let i = 0; i < 6; i++) {
+            const progress = document.createElement('div');
+            progress.setAttribute('class', 'progress');
+            progress.style.width = `${pokemon.baseStats[i]}px`;
+            progress.innerHTML = pokemon.baseStats[i];
+            progress.classList.add(`${pokemon.type}`);
+
+            bar[i].appendChild(progress);
+        }
     }
 }
 

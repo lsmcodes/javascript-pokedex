@@ -1,4 +1,5 @@
 import { Pokemon } from "./models/pokemon-model.js";
+import { PokemonSpecies } from "./models/pokemon-species-model.js";
 
 class PokeApi {
     convertPokemonDataToPokemon(json) {
@@ -25,6 +26,31 @@ class PokeApi {
         pokemon.weight = json.weight;
 
         return pokemon;
+    }
+
+    convertPokemonDataToPokemonSpecies(json) {
+        const pokemonSpecies = new PokemonSpecies();
+
+        const eggGroups = json.egg_groups.map((slot) => slot.name)
+
+        const flavorTextEntries = json.flavor_text_entries.filter((slot) => {
+            if (slot.language.name === 'en') {
+                return slot.flavor_text;
+            }
+        });
+
+        pokemonSpecies.baseHappiness = json.base_happiness;
+        pokemonSpecies.captureRate = json.capture_rate;
+        pokemonSpecies.eggGroups = eggGroups;
+
+        pokemonSpecies.evolutionChain = json.evolution_chain.url;
+
+        pokemonSpecies.flavorText = flavorTextEntries[0].flavor_text.replace('POKéMON', 'Pokémon');
+
+        pokemonSpecies.genus = json.genera[7].genus;
+        pokemonSpecies.growthRate = json.growth_rate.name;
+
+        return pokemonSpecies;
     }
 
     async getPokemonData(pokemon) {
@@ -63,6 +89,14 @@ class PokeApi {
         } catch (error) {
             return error;
         }
+    }
+
+    async getPokemonSpecies(pokemonSearch) {
+        const url = `https://pokeapi.co/api/v2/pokemon-species/${pokemonSearch}`;
+
+        const response = await fetch(url);
+        const pokemonData = await response.json();
+        return this.convertPokemonDataToPokemonSpecies(pokemonData);
     }
 }
 

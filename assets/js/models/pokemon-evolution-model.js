@@ -1,6 +1,5 @@
 class PokemonEvolution {
-    evolutionsName = [];
-    evolutionsId = [];
+    evolution;
 }
 
 export { PokemonEvolution };

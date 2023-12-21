@@ -70,14 +70,15 @@ class PokemonDetails {
                 <p class="pokemon-flavor-text">${pokemonSpecies.flavorText}</p>
             </div>
 
-            <div class="pokemon-height">
-                <h2>Height</h2>
-                <span class="height">${(pokemon.height * 0.1).toFixed(1)}m</span>
-            </div>
-
-            <div class="pokemon-weight">
-                <h2>Weight</h2>
-                <span class="weight">${(pokemon.weight * 0.1).toFixed(1)}kg</span>
+            <div class="pokemon-measures">
+                <div class="pokemon-height">
+                    <h2>Height</h2>
+                    <span class="height">${(pokemon.height * 0.1).toFixed(1)}m</span>
+                </div>
+                <div class="pokemon-weight">
+                    <h2>Weight</h2>
+                    <span class="weight">${(pokemon.weight * 0.1).toFixed(1)}kg</span>
+                </div>
             </div>
 
             <div class="pokemon-abilities">

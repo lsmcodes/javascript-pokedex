@@ -37,14 +37,7 @@ class PokemonDetails {
 
     async getPokemonData(pokemonName) {
         const pokemon = await pokeApi.getPokemon(pokemonName);
-        let pokemonSpecies;
-
-        if(pokemonName.search(/-/) && pokemonName.split(/-/)[1] === 'incarnate'){
-            pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName.split(/-/)[0]);
-        } else {
-            pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName);
-        }
-        
+        const pokemonSpecies = await pokeApi.getPokemonSpecies(pokemon.speciesUrl);
         const pokemonEvolutions = await pokeApi.getPokemonEvolution(pokemonSpecies.evolutionChain);
 
         this.createPokemonDetailsHeader(pokemon);
@@ -108,11 +101,11 @@ class PokemonDetails {
         if(pokemonEvolutions instanceof Error) {
             this.evolution.innerHTML += `This Pokémon doesn't evolve.`;
         } else {
-            this.evolution.innerHTML += pokemonEvolutions.evolutionsName.map((evolutionsName, index) => {
+            this.evolution.innerHTML += pokemonEvolutions.evolution.map((evolution) => {
                 return `
-                    <a href="pokemon-details.html?pokemonName=${evolutionsName}&theme=${this.body.classList.contains('light')?'light':'dark'}">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonEvolutions.evolutionsId[index]}.png">
-                        <h2>${evolutionsName}</h2>
+                    <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
+                        <h2>${evolution.name}</h2>
                     </a>
                 `
             }).join('');

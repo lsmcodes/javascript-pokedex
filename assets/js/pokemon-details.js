@@ -33,8 +33,10 @@ class PokemonDetails {
 
     async getPokemonData(pokemonName) {
         const pokemon = await pokeApi.getPokemon(pokemonName);
+        const pokemonSpecies = await pokeApi.getPokemonSpecies(pokemonName);
 
         this.createPokemonDetailsHeader(pokemon);
+        this.createPokemonDetailsAbout(pokemon, pokemonSpecies);
     }
 
     createPokemonDetailsHeader(pokemon) {
@@ -48,6 +50,30 @@ class PokemonDetails {
                 ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
             </div>
         `;
+    }
+
+    createPokemonDetailsAbout(pokemon, pokemonSpecies) {
+        this.about.innerHTML += `
+            <div class="pokedex-entry">
+                <h2>Pokédex entry</h2>
+                <p class="pokemon-flavor-text">${pokemonSpecies.flavorText}</p>
+            </div>
+
+            <div class="pokemon-height">
+                <h2>Height</h2>
+                <span class="height">${(pokemon.height * 0.1).toFixed(1)}m</span>
+            </div>
+
+            <div class="pokemon-weight">
+                <h2>Weight</h2>
+                <span class="weight">${(pokemon.weight * 0.1).toFixed(1)}kg</span>
+            </div>
+
+            <div class="pokemon-abilities">
+                <h2>Abilities</h2>
+                ${pokemon.abilities.map((ability) => `<span class="ability">${ability}</span>`).join(' ')}
+            </div>
+        `
     }
 }
 

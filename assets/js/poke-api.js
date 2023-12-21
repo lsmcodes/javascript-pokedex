@@ -1,5 +1,6 @@
 import { Pokemon } from "./models/pokemon-model.js";
 import { PokemonSpecies } from "./models/pokemon-species-model.js";
+import { PokemonEvolution } from "./models/pokemon-evolution-model.js";
 
 class PokeApi {
     convertPokemonDataToPokemon(json) {
@@ -53,6 +54,40 @@ class PokeApi {
         return pokemonSpecies;
     }
 
+    async convertPokemonDataToPokemonEvolution(json) {
+        const pokemonEvolution = new PokemonEvolution();
+
+        const evolutionsName = [];
+
+        evolutionsName.push(json.chain.species.name);
+
+        if(json.chain.evolves_to.length !== 0) {
+            json.chain.evolves_to.map((slot) => {
+                evolutionsName.push(slot.species.name);
+            });
+        } else {
+            return new Error;
+        }
+        
+        json.chain.evolves_to.map((slot) => {
+            if(slot.evolves_to.length !== 0) {
+                slot.evolves_to.map((slot) => {
+                    evolutionsName.push(slot.species.name);
+                })
+            }
+        })
+
+        pokemonEvolution.evolutionsName = evolutionsName;
+        
+        const evolutionsId = await Promise.all(evolutionsName.map(async (evolution) => {
+            const response = await this.getPokemon(evolution);
+            return response.id;
+        }))
+
+        pokemonEvolution.evolutionsId = evolutionsId;
+        return pokemonEvolution;
+    }
+
     async getPokemonData(pokemon) {
         const response = await fetch(pokemon.url);
         const responseBody = await response.json();
@@ -97,6 +132,12 @@ class PokeApi {
         const response = await fetch(url);
         const pokemonData = await response.json();
         return this.convertPokemonDataToPokemonSpecies(pokemonData);
+    }
+
+    async getPokemonEvolution(url) {
+        const response = await fetch(url);
+        const responseBody = await response.json();
+        return this.convertPokemonDataToPokemonEvolution(responseBody);
     }
 }
 

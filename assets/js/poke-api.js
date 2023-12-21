@@ -57,35 +57,30 @@ class PokeApi {
 
     async convertPokemonDataToPokemonEvolution(json) {
         const pokemonEvolution = new PokemonEvolution();
+        const evolutionsUrl = []
 
-        const evolutionsName = [];
-
-        evolutionsName.push(json.chain.species.name);
+        evolutionsUrl.push(json.chain.species.url);
 
         if(json.chain.evolves_to.length !== 0) {
             json.chain.evolves_to.map((slot) => {
-                evolutionsName.push(slot.species.name);
+                evolutionsUrl.push(slot.species.url);
+                if(slot.evolves_to.length !== 0) {
+                    slot.evolves_to.map((slot) => {
+                        evolutionsUrl.push(slot.species.url);
+                    })
+                }
             });
         } else {
             return new Error;
         }
-        
-        json.chain.evolves_to.map((slot) => {
-            if(slot.evolves_to.length !== 0) {
-                slot.evolves_to.map((slot) => {
-                    evolutionsName.push(slot.species.name);
-                })
-            }
-        })
 
-        pokemonEvolution.evolutionsName = evolutionsName;
-        
-        const evolutionsId = await Promise.all(evolutionsName.map(async (evolution) => {
-            const response = await this.getPokemon(evolution);
-            return response.id;
+        const evolution = await Promise.all(evolutionsUrl.map(async (evolutionUrl) => {
+            const response = await this.getPokemonSpecies(evolutionUrl);
+            const evolution = await this.getPokemon(response.id.toString());
+            return evolution;
         }))
 
-        pokemonEvolution.evolutionsId = evolutionsId;
+        pokemonEvolution.evolution = evolution;
         return pokemonEvolution;
     }
 
@@ -127,9 +122,7 @@ class PokeApi {
         }
     }
 
-    async getPokemonSpecies(pokemonSearch) {
-        const url = `https://pokeapi.co/api/v2/pokemon-species/${pokemonSearch}`;
-
+    async getPokemonSpecies(url) {
         const response = await fetch(url);
         const pokemonData = await response.json();
         return this.convertPokemonDataToPokemonSpecies(pokemonData);

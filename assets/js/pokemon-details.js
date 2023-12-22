@@ -101,11 +101,18 @@ class PokemonDetails {
         if(pokemonEvolutions instanceof Error) {
             this.evolution.innerHTML += `This Pokémon doesn't evolve.`;
         } else {
+            let i = -1;
             this.evolution.innerHTML += pokemonEvolutions.evolution.map((evolution) => {
+                i++;
                 return `
                     <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
+                        <h3>${evolution.name}</h3>
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
-                        <h2>${evolution.name}</h2>
+                        <div class="evolution-info">
+                            <span class="pokemon-type ${evolution.type}">${evolution.type}</span>
+                            <span>N°${evolution.id}</span>
+                        </div>
+                        ${pokemonEvolutions.evolutionsNumber[i] === i + 1?`<span class="material-symbols-outlined">arrow_downward</span>`:``}
                     </a>
                 `
             }).join('');

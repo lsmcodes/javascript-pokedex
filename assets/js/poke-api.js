@@ -57,17 +57,22 @@ class PokeApi {
 
     async convertPokemonDataToPokemonEvolution(json) {
         const pokemonEvolution = new PokemonEvolution();
-        const evolutionsUrl = []
+        const evolutionsUrl = [];
+
+        const evolutions = [];
 
         evolutionsUrl.push(json.chain.species.url);
 
         if(json.chain.evolves_to.length !== 0) {
             json.chain.evolves_to.map((slot) => {
                 evolutionsUrl.push(slot.species.url);
+                evolutions.push(1);
+                
                 if(slot.evolves_to.length !== 0) {
+                    slot.evolves_to.length === 1?evolutions.push(2): evolutions.push(0);
                     slot.evolves_to.map((slot) => {
                         evolutionsUrl.push(slot.species.url);
-                    })
+                    });
                 }
             });
         } else {
@@ -80,6 +85,7 @@ class PokeApi {
             return evolution;
         }))
 
+        pokemonEvolution.evolutionsNumber = evolutions;
         pokemonEvolution.evolution = evolution;
         return pokemonEvolution;
     }

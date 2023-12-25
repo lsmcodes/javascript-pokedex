@@ -46,15 +46,18 @@ class PokemonDetails {
         this.createPokemonDetailsEvolution(pokemonEvolutions);
     }
 
-    createPokemonDetailsHeader(pokemon) {
+    createPokemonDetailsHeader(pokemon, pokemonSpecies) {
+        this.detailsHeader.classList.add(pokemon.type);
         this.detailsHeader.innerHTML += `
-            <div class="pokemon-image ${pokemon.type}">
-                <img class="image" src="${pokemon.sprite}" alt="">
+            <div class="pokemon-info">
+                <h1 class="pokemon-name">${pokemon.name}</h1>
+                <span class="pokemon-number">N°${pokemon.id}</span>
             </div>
-            <span class="pokemon-number">${pokemon.id}</span>
-            <h1 class="pokemon-name">${pokemon.name}</h1>
-            <div class="pokemon-types">
-                ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
+            <div class="pokemon-genus">
+                <span>${pokemonSpecies.genus}</span>
+            </div>
+            <div class="pokemon-image">
+                <img class="image" src="${pokemon.sprite}" alt="">
             </div>
         `;
     }

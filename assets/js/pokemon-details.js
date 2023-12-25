@@ -109,7 +109,7 @@ class PokemonDetails {
 
     createPokemonDetailsEvolution(pokemonEvolutions) {
         if(pokemonEvolutions instanceof Error) {
-            this.evolution.innerHTML += `This Pokémon doesn't evolve.`;
+            this.first.innerHTML += `This Pokémon doesn't evolve.`;
         } else {
             let i = -1;
             pokemonEvolutions.evolution.map((evolution) => {

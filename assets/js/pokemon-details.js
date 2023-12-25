@@ -5,18 +5,18 @@ class PokemonDetails {
         this.body = document.querySelector('body');
         this.main = document.querySelector('main');
 
-        this.backButton = document.querySelector('.back-button')
+        this.closeButton = document.querySelector('.close-button')
 
         this.detailsHeader = document.querySelector('.details-header');
 
-        this.about = document.querySelector('.about');
+        this.about = document.querySelector('.details-about');
 
-        this.stats = document.querySelector('.stats');
+        this.stats = document.querySelector('.details-stats');
         this.baseStats = document.querySelector('.base-stats');
 
         this.evolution = document.querySelector('.evolution');
 
-        this.backButton.addEventListener('click', () => {
+        this.closeButton.addEventListener('click', () => {
             window.history.back();
         })
     }

@@ -84,6 +84,11 @@ class PokemonDetails {
                 <h2>Abilities</h2>
                 ${pokemon.abilities.map((ability) => `<span class="ability">${ability}</span>`).join(' ')}
             </div>
+
+            <div class="pokemon-types">
+                <h2>Types</h2>
+                ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
+            </div>
         `
     }
 

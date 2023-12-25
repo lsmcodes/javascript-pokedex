@@ -112,21 +112,32 @@ class PokemonDetails {
             this.evolution.innerHTML += `This Pokémon doesn't evolve.`;
         } else {
             let i = -1;
-            this.evolution.innerHTML += pokemonEvolutions.evolution.map((evolution) => {
+            pokemonEvolutions.evolution.map((evolution) => {
                 i++;
-                return `
-                    <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
-                        <h3>${evolution.name}</h3>
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
-                        <div class="evolution-info">
-                            <span class="pokemon-type ${evolution.type}">${evolution.type}</span>
-                            <span>N°${evolution.id}</span>
-                        </div>
-                        ${pokemonEvolutions.evolutionsNumber[i] === i + 1?`<span class="material-symbols-outlined">arrow_downward</span>`:``}
-                    </a>
-                `
+                if(i > 2) {
+                    this.last.classList.add('wrap');
+                }
+                if(i === 0) {
+                    this.first.innerHTML = this.returnEvolution(pokemonEvolutions, evolution, i);
+                } else {
+                    this.last.innerHTML += this.returnEvolution(pokemonEvolutions, evolution, i);
+                }
             }).join('');
         }
+    }
+
+    returnEvolution(pokemonEvolutions, evolution, i) {
+        return `
+                <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
+                    <h3>${evolution.name}</h3>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
+                    <div class="evolution-info">
+                        <span class="pokemon-type ${evolution.type}">${evolution.type}</span>
+                        <span>N°${evolution.id}</span>
+                    </div>
+                </a>
+                ${pokemonEvolutions.evolutionsNumber[i] === i + 1?`<span class="material-symbols-outlined arrow">arrow_downward</span>`:``}
+            `
     }
 }
 

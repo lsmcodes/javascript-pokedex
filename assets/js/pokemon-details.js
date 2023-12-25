@@ -40,7 +40,7 @@ class PokemonDetails {
         const pokemonSpecies = await pokeApi.getPokemonSpecies(pokemon.speciesUrl);
         const pokemonEvolutions = await pokeApi.getPokemonEvolution(pokemonSpecies.evolutionChain);
 
-        this.createPokemonDetailsHeader(pokemon);
+        this.createPokemonDetailsHeader(pokemon, pokemonSpecies);
         this.createPokemonDetailsAbout(pokemon, pokemonSpecies);
         this.createPokemonDetailsStats(pokemon);
         this.createPokemonDetailsEvolution(pokemonEvolutions);

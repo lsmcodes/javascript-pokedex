@@ -15,6 +15,8 @@ class PokemonDetails {
         this.baseStats = document.querySelector('.base-stats');
 
         this.evolution = document.querySelector('.evolution');
+        this.first = document.querySelector('.first');
+        this.last = document.querySelector('.last');
 
         this.closeButton.addEventListener('click', () => {
             window.history.back();

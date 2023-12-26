@@ -3,6 +3,7 @@ import { pokeApi } from './poke-api.js';
 class PokemonDetails {
     constructor() {
         this.body = document.querySelector('body');
+        this.loadingContainer = document.querySelector('.loading-container');
         this.main = document.querySelector('main');
 
         this.closeButton = document.querySelector('.close-button')
@@ -47,6 +48,8 @@ class PokemonDetails {
         this.createPokemonDetailsAbout(pokemon, pokemonSpecies, pokemonWeaknesses);
         this.createPokemonDetailsStats(pokemon);
         this.createPokemonDetailsEvolution(pokemonEvolutions);
+        
+        this.loadingContainer.style.display = 'none';
     }
 
     createPokemonDetailsHeader(pokemon, pokemonSpecies) {
@@ -151,6 +154,8 @@ class PokemonDetails {
     }
 
     init() {
+        this.loadingContainer.style.display = 'flex';
+
         const pokemon = this.queryString()[1];
         this.getPokemonData(pokemon);
         this.configureTheme();

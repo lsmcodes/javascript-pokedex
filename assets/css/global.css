@@ -182,5 +182,7 @@ header {
 }
 
 @media screen and (min-width: 1190px) {
-    
+    .search-bar:hover, button:hover {
+        filter: brightness(.9);
+    }
 }

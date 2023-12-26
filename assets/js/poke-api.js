@@ -35,22 +35,20 @@ class PokeApi {
 
         const eggGroups = json.egg_groups.map((slot) => slot.name)
 
-        const flavorTextEntries = json.flavor_text_entries.filter((slot) => {
+        json.flavor_text_entries.filter((slot) => {
             if (slot.language.name === 'en') {
-                return slot.flavor_text;
+                pokemonSpecies.flavorText = slot.flavor_text;
             }
         });
 
-        pokemonSpecies.baseHappiness = json.base_happiness;
-        pokemonSpecies.captureRate = json.capture_rate;
+        json.genera.filter((slot) => {
+            if(slot.language.name === 'en') {
+                pokemonSpecies.genus = slot.genus;
+            }
+        });
+
         pokemonSpecies.eggGroups = eggGroups;
-
         pokemonSpecies.evolutionChain = json.evolution_chain.url;
-
-        pokemonSpecies.flavorText = flavorTextEntries[0].flavor_text.replace('POKéMON', 'Pokémon');
-
-        pokemonSpecies.genus = json.genera[7].genus;
-        pokemonSpecies.growthRate = json.growth_rate.name;
         pokemonSpecies.id = json.id;
 
         return pokemonSpecies;

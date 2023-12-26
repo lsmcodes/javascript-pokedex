@@ -149,6 +149,13 @@ class PokemonDetails {
                 ${pokemonEvolutions.evolutionsNumber[i] === i + 1?`<span class="material-symbols-outlined arrow">arrow_downward</span>`:``}
             `
     }
+
+    init() {
+        const pokemon = this.queryString()[1];
+        this.getPokemonData(pokemon);
+        this.configureTheme();
+    }
 }
 
 const pokemonDetails = new PokemonDetails();
+pokemonDetails.init();

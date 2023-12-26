@@ -92,7 +92,11 @@ body {
     background-color: var(--background-color);
     color: var(--color);
     height: 100vh;
-    transition: margin 0.3s ease;
+    transition: margin 0.3s ease, background-color 0.3s ease;
+}
+
+.search-bar:active, button:active {
+    filter: brightness(.9);
 }
 
 header {

@@ -40,10 +40,11 @@ class PokemonDetails {
     async getPokemonData(pokemonName) {
         const pokemon = await pokeApi.getPokemon(pokemonName);
         const pokemonSpecies = await pokeApi.getPokemonSpecies(pokemon.speciesUrl);
+        const pokemonWeaknesses = await pokeApi.getPokemonWeaknesses(pokemon.typesUrls);
         const pokemonEvolutions = await pokeApi.getPokemonEvolution(pokemonSpecies.evolutionChain);
 
         this.createPokemonDetailsHeader(pokemon, pokemonSpecies);
-        this.createPokemonDetailsAbout(pokemon, pokemonSpecies);
+        this.createPokemonDetailsAbout(pokemon, pokemonSpecies, pokemonWeaknesses);
         this.createPokemonDetailsStats(pokemon);
         this.createPokemonDetailsEvolution(pokemonEvolutions);
     }
@@ -64,7 +65,7 @@ class PokemonDetails {
         `;
     }
 
-    createPokemonDetailsAbout(pokemon, pokemonSpecies) {
+    createPokemonDetailsAbout(pokemon, pokemonSpecies, pokemonWeaknesses) {
         this.about.innerHTML += `
             <div class="pokedex-entry">
                 <h2>Pokédex entry</h2>
@@ -90,6 +91,11 @@ class PokemonDetails {
             <div class="pokemon-types">
                 <h2>Types</h2>
                 ${pokemon.types.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
+            </div>
+
+            <div class="pokemon-weaknesses">
+                <h2>Weaknesses</h2>
+                ${pokemonWeaknesses.doubleDamageFrom.map((type) => `<span class="pokemon-type ${type}">${type}</span>`).join(' ')}
             </div>
         `
     }

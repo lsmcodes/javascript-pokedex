@@ -1,5 +1,6 @@
 import { Pokemon } from "./models/pokemon-model.js";
 import { PokemonSpecies } from "./models/pokemon-species-model.js";
+import { PokemonWeaknesses } from "./models/pokemon-weaknesses-model.js"
 import { PokemonEvolution } from "./models/pokemon-evolution-model.js";
 
 class PokeApi {
@@ -53,6 +54,21 @@ class PokeApi {
         pokemonSpecies.id = json.id;
 
         return pokemonSpecies;
+    }
+
+    convertPokemonDataToPokemonWeaknesses(json) {
+        const pokemonWeaknesses = new PokemonWeaknesses();
+
+        const doubleDamageFrom = json.damage_relations.double_damage_from.map((slot) => slot.name);
+        pokemonWeaknesses.doubleDamageFrom = doubleDamageFrom;
+
+        const halfDamageFrom = json.damage_relations.half_damage_from.map((slot) => slot.name);
+        pokemonWeaknesses.halfDamageFrom = halfDamageFrom;
+
+        const noDamageFrom = json.damage_relations.no_damage_from.map((slot) => slot.name);
+        pokemonWeaknesses.noDamageFrom = noDamageFrom;
+
+        return pokemonWeaknesses;
     }
 
     async convertPokemonDataToPokemonEvolution(json) {
@@ -132,6 +148,36 @@ class PokeApi {
         const response = await fetch(url);
         const pokemonData = await response.json();
         return this.convertPokemonDataToPokemonSpecies(pokemonData);
+    }
+
+    async getPokemonWeaknesses(urls) {
+        const pokemonWeaknesses = new PokemonWeaknesses();
+        let { doubleDamageFrom, halfDamageFrom, noDamageFrom } = pokemonWeaknesses;
+
+        for (let i = 0; i < urls.length; i++) {
+            const response = await fetch(urls[i]);
+            const pokemonData = await response.json();
+            const weaknesses = this.convertPokemonDataToPokemonWeaknesses(pokemonData);
+
+            doubleDamageFrom.push(...weaknesses.doubleDamageFrom);
+            halfDamageFrom.push(...weaknesses.halfDamageFrom);
+            noDamageFrom.push(...weaknesses.noDamageFrom);
+        }
+
+        pokemonWeaknesses.doubleDamageFrom = doubleDamageFrom.filter((type, index, array) =>
+            array.indexOf(type) === index &&
+            halfDamageFrom.indexOf(type) === -1 &&
+            noDamageFrom.indexOf(type) === -1);
+
+        pokemonWeaknesses.halfDamageFrom = halfDamageFrom.filter((type, index, array) =>
+            array.indexOf(type) === index &&
+            doubleDamageFrom.indexOf(type) === -1 &&
+            noDamageFrom.indexOf(type) === -1);
+
+        pokemonWeaknesses.noDamageFrom = noDamageFrom.filter((type, index, array) =>
+            array.indexOf(type) === index);
+        
+        return pokemonWeaknesses;
     }
 
     async getPokemonEvolution(url) {

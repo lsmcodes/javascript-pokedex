@@ -72,20 +72,24 @@ class PokemonDetails {
                 <p class="pokemon-flavor-text">${pokemonSpecies.flavorText}</p>
             </div>
 
-            <div class="pokemon-measures">
-                <div class="pokemon-height">
-                    <h2>Height</h2>
-                    <span class="height">${(pokemon.height * 0.1).toFixed(1)}m</span>
-                </div>
-                <div class="pokemon-weight">
-                    <h2>Weight</h2>
-                    <span class="weight">${(pokemon.weight * 0.1).toFixed(1)}kg</span>
-                </div>
+            <div class="pokemon-height">
+                <h2>Height</h2>
+                <span class="height badge">${(pokemon.height * 0.1).toFixed(1)}m</span>
+            </div>
+
+            <div class="pokemon-weight">
+                <h2>Weight</h2>
+                <span class="weight badge">${(pokemon.weight * 0.1).toFixed(1)}kg</span>
             </div>
 
             <div class="pokemon-abilities">
                 <h2>Abilities</h2>
-                ${pokemon.abilities.map((ability) => `<span class="ability">${ability}</span>`).join(' ')}
+                ${pokemon.abilities.map((ability) => `<span class="ability badge">${ability}</span>`).join(' ')}
+            </div>
+
+            <div class="pokemon-egg-groups">
+                <h2>Egg groups</h2>
+                ${pokemonSpecies.eggGroups.map((eggGroup) => `<span class="eggGroup badge">${eggGroup}</span>`).join(' ')}
             </div>
 
             <div class="pokemon-types">

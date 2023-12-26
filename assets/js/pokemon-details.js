@@ -2,6 +2,7 @@ import { pokeApi } from './poke-api.js';
 
 class PokemonDetails {
     constructor() {
+        this.title = document.querySelector('title');
         this.body = document.querySelector('body');
         this.loadingContainer = document.querySelector('.loading-container');
         this.main = document.querySelector('main');
@@ -157,6 +158,7 @@ class PokemonDetails {
         this.loadingContainer.style.display = 'flex';
 
         const pokemon = this.queryString()[1];
+        this.title.innerHTML = pokemon.substring(0,1).toUpperCase() + pokemon.substring(1,pokemon.length);
         this.getPokemonData(pokemon);
         this.configureTheme();
     }

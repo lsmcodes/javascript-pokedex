@@ -141,6 +141,13 @@ header {
     filter: brightness(.9);
 }
 
+.evolution img {
+    background-color: var(--surface-color);
+    border-radius: 50%;
+    width: 40%;
+    margin-bottom: 1rem;
+}
+
 .first, .last {
     display: flex;
     align-items: center;

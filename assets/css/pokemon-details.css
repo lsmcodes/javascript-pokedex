@@ -8,7 +8,8 @@
     display: grid;
     grid-area: statName;
     text-transform: capitalize;
-    margin-bottom: .2rem;
+    margin-bottom: .3rem;
+    row-gap: .2rem;
 }
 
 .base-stats {

@@ -155,7 +155,6 @@ header {
 .bar {
     background-color: var(--surface-color);
     height: 1rem;
-    max-width: 300px;
     border-radius: 1rem;
 }
 
@@ -245,7 +244,6 @@ header {
 
     .last {
         flex-direction: row;
-        flex-wrap: wrap;
         flex: 2;
     }
 

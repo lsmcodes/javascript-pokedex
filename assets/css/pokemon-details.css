@@ -44,6 +44,13 @@ header {
     overflow-y: auto;
 }
 
+.badge {
+    background-color: var(--surface-color);
+    border-radius: 1.5rem;
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
 .details-about {
     display: grid;
     grid-template-areas: "entry entry"
@@ -152,6 +159,11 @@ header {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 @media screen and (min-width: 760px) {

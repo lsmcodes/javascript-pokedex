@@ -12,6 +12,12 @@
     grid-area: entry;
 }
 
+.pokemon-height, .pokemon-weight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .pokemon-height {
     grid-area: height;
 }
@@ -108,5 +114,13 @@
                              "height weight"
                              "abilities eggGroups"
                              "types weaknesses";
+    }
+
+    .pokemon-height {
+        display: block;
+    }
+    
+    .pokemon-weight {
+        display: block;
     }
 }

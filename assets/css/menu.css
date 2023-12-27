@@ -41,6 +41,10 @@
     max-width: 100%;
 }
 
+.generation:active {
+    filter: brightness(.9);
+}
+
 .open {
     width: 100%;
 }
@@ -71,5 +75,7 @@
 }
 
 @media screen and (min-width: 1190px) {
-    
+    .generation:hover {
+        filter: brightness(.9);
+    }
 }

@@ -26,6 +26,11 @@
     width: 90%;
 }
 
+.details-content {
+    padding: 2rem;
+    overflow-y: auto;
+}
+
 .details-about {
     display: grid;
     grid-template-areas: "entry entry"
@@ -136,6 +141,21 @@
 
     .pokemon-image {
         width: 80%;
+    }
+
+    .details-content {
+        margin-left: 40%;
+        padding: 2rem;
+        width: 60%;
+    }
+
+    .details-stats {
+        justify-content: space-between;
+    }
+
+    .details-evolution {
+        display: flex;
+        flex-direction: column;
     }
 
     .evolution {

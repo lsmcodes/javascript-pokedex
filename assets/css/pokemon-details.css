@@ -1,3 +1,43 @@
+.details-about {
+    display: grid;
+    grid-template-areas: "entry entry"
+                         "height weight"
+                         "abilities abilities"
+                         "eggGroups eggGroups"
+                         "types types"
+                         "weaknesses weaknesses";
+}
+
+.pokedex-entry {
+    grid-area: entry;
+}
+
+.pokemon-height {
+    grid-area: height;
+}
+
+.pokemon-weight {
+    grid-area: weight;
+}
+
+.pokemon-abilities {
+    grid-area: abilities;
+    white-space: nowrap;
+}
+
+.pokemon-egg-groups {
+    grid-area: eggGroups;
+}
+
+.pokemon-types {
+    align-self: baseline;
+    grid-area: types;
+}
+
+.pokemon-weaknesses {
+    grid-area: weaknesses;
+}
+
 .details-stats {
     display: grid;
     grid-template-areas: "category category category"
@@ -60,5 +100,13 @@
 @media screen and (min-width: 1190px) {
     .evolution a:hover {
         filter: brightness(.9);
+    }
+
+    .details-about {
+        display: grid;
+        grid-template-areas: "entry entry"
+                             "height weight"
+                             "abilities eggGroups"
+                             "types weaknesses";
     }
 }

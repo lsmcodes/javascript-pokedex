@@ -135,7 +135,8 @@ header {
 .details-stats {
     display: grid;
     grid-template-areas: "category category category"
-                         "statName statBar statBar"
+                         "statName statBar statBar";
+    grid-template-columns: 50% 50%;
 }
 
 .stats-names {
@@ -264,6 +265,7 @@ header {
                              "height weight"
                              "abilities eggGroups"
                              "types weaknesses";
+        grid-template-columns: 50% 50%;
     }
 
     .pokemon-height {

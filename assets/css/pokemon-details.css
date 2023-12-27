@@ -35,10 +35,12 @@
     font-size: .8rem;
 }
 
-.evolutions {
-    background-color: var(--surface-color);
+@media screen and (min-width: 760px) {
+    .evolution {
+        display: flex;
+        align-self: center;
+        width: 100%;
+    }
 }
-
-@media screen and (min-width: 760px) {}
 
 @media screen and (min-width: 1190px) {}

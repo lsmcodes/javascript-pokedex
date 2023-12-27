@@ -35,6 +35,20 @@
     font-size: .8rem;
 }
 
+.evolution a {
+    color: var(--color);
+    text-transform: capitalize;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.evolution a:active {
+    filter: brightness(.9);
+}
+
 @media screen and (min-width: 760px) {
     .evolution {
         display: flex;
@@ -43,4 +57,8 @@
     }
 }
 
-@media screen and (min-width: 1190px) {}
+@media screen and (min-width: 1190px) {
+    .evolution a:hover {
+        filter: brightness(.9);
+    }
+}

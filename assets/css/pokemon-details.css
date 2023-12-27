@@ -38,3 +38,7 @@
 .evolutions {
     background-color: var(--surface-color);
 }
+
+@media screen and (min-width: 760px) {}
+
+@media screen and (min-width: 1190px) {}

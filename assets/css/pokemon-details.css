@@ -61,6 +61,10 @@ header {
                          "weaknesses weaknesses";
 }
 
+.details-about div {
+    margin-bottom: 1rem;
+}
+
 .pokedex-entry {
     grid-area: entry;
 }

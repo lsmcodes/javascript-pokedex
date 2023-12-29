@@ -1,7 +1,7 @@
 {
   "name": "javascript-pokedex",
   "version": "1.0.0",
-  "description": "Explore five generations of Pokémon with this interactive JavaScript Pokédex. Integrated with PokéApi, it offers information to learn more about your favorite Pokémon.",
+  "description": "Explore nine generations of Pokémon with this interactive JavaScript Pokédex. Integrated with PokéApi, it offers information to learn more about your favorite Pokémon.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

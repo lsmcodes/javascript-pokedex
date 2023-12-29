@@ -42,6 +42,10 @@ class Menu {
                 pokedexConfig.offset = pokedexConfig.offsetGeneration = 809;
                 pokedexConfig.maxRecords = 905;
                 break;
+            case '9':
+                pokedexConfig.offset = pokedexConfig.offsetGeneration = 905;
+                pokedexConfig.maxRecords = 1010;
+                break;
             default:
                 pokedexConfig.offset = pokedexConfig.offsetGeneration = 0;
                 pokedexConfig.maxRecords = 151;
@@ -90,7 +94,7 @@ class Menu {
             this.generations[0].classList.remove('disabled');
             this.generations[0].classList.add('grass');
 
-            const genFirstPokemon = [1, 152, 252, 387, 494, 650, 722, 810];
+            const genFirstPokemon = [1, 152, 252, 387, 494, 650, 722, 810, 906];
             generation.innerHTML += `
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${genFirstPokemon[i]}.png" alt="generation ${i + 1} pokemon" class="image">
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${genFirstPokemon[i] + 3}.png" alt="generation ${i + 1} pokemon" class="image">

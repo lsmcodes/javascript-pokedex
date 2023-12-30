@@ -143,14 +143,18 @@ class PokemonDetails {
     returnEvolution(pokemonEvolutions, evolution, i) {
         return `
                 <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
-                    <h3>${evolution.name}</h3>
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
                     <div class="evolution-info">
+                        <h3>${evolution.name}</h3>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.id}.png">
                         <span class="pokemon-type ${evolution.type}">${evolution.type}</span>
                         <span>N°${evolution.id}</span>
                     </div>
+                    ${pokemonEvolutions.evolves.includes(evolution)?
+                        `<div>
+                            <span class="material-symbols-outlined arrow">arrow_downward</span>
+                        </div>`
+                        :``}
                 </a>
-                ${pokemonEvolutions.evolutionsNumber[i] === i + 1?`<span class="material-symbols-outlined arrow">arrow_downward</span>`:``}
             `
     }
 

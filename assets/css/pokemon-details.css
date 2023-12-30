@@ -197,10 +197,11 @@ header {
     margin-bottom: 1rem;
 }
 
-.first, .last {
+.first, .middle, .last {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .wrap {
@@ -248,9 +249,8 @@ header {
         flex-direction: row;
     }
 
-    .last {
-        flex-direction: row;
-        flex: 2;
+    .first, .middle, .last {
+        flex-direction: column;
     }
 
     .arrow {

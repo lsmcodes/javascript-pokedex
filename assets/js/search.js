@@ -7,18 +7,6 @@ class Search {
         this.searchBar = document.querySelector('.search-bar');
     }
 
-    debounce(func, delay) {
-        let timeOut;
-        return () => {
-            const context = this;
-            const args = arguments;
-            clearTimeout(timeOut);
-            timeOut = setTimeout(() => {
-                func.apply(context, args);
-            }, delay);
-        };
-    }
-
     searchPokemon() {
         const pokemonSearch = this.searchBar.value;
         pokeApi.getPokemon(pokemonSearch).then((response) => {
@@ -61,8 +49,7 @@ class Search {
         
         this.searchBar.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
-                const searchPokemonDebounced = this.debounce(this.searchPokemon, 500);
-                searchPokemonDebounced();
+                this.searchPokemon();
             }
         });
         

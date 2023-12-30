@@ -1,6 +1,6 @@
 class PokemonEvolution {
-    evolution;
-    evolutionsNumber;
+    evolutions;
+    evolves = [];
 }
 
 export { PokemonEvolution };

@@ -71,36 +71,37 @@ class PokeApi {
 
     async convertPokemonDataToPokemonEvolution(json) {
         const pokemonEvolution = new PokemonEvolution();
+        
         const evolutionsUrl = [];
-
-        const evolutions = [];
+        const evolves = [];
 
         evolutionsUrl.push(json.chain.species.url);
+        evolves.push(json.chain.species.url);
 
         if(json.chain.evolves_to.length !== 0) {
             json.chain.evolves_to.map((slot) => {
                 evolutionsUrl.push(slot.species.url);
-                evolutions.push(1);
-                
+
                 if(slot.evolves_to.length !== 0) {
-                    slot.evolves_to.length === 1?evolutions.push(2): evolutions.push(0);
+                    evolves.push(slot.species.url);
                     slot.evolves_to.map((slot) => {
                         evolutionsUrl.push(slot.species.url);
-                    });
+                    })
                 }
             });
+
         } else {
             return new Error;
         }
 
-        const evolution = await Promise.all(evolutionsUrl.map(async (evolutionUrl) => {
-            const response = await this.getPokemonSpecies(evolutionUrl);
+        pokemonEvolution.evolutions = await Promise.all(evolutionsUrl.map(async (url) => {
+            const response = await this.getPokemonSpecies(url);
             const evolution = await this.getPokemon(response.id.toString());
+            if(evolves.includes(url))
+                pokemonEvolution.evolves.push(evolution);
             return evolution;
-        }))
+        }));
 
-        pokemonEvolution.evolutionsNumber = evolutions;
-        pokemonEvolution.evolution = evolution;
         return pokemonEvolution;
     }
 

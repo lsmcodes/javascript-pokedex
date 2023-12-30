@@ -73,7 +73,7 @@ class Main {
         this.convertPokemonToLi(pokedexConfig.offset, pokedexConfig.limit);
         this.changeTheme();
 
-        if(localStorage.length === 1) {
+        if(localStorage.length !== 0) {
             this.body.classList.add(localStorage.getItem('theme'));
         }
 

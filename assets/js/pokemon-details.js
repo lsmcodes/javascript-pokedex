@@ -125,22 +125,36 @@ class PokemonDetails {
         if(pokemonEvolutions instanceof Error) {
             this.first.innerHTML += `This Pokémon doesn't evolve.`;
         } else {
-            let i = -1;
-            pokemonEvolutions.evolution.map((evolution) => {
+            let middle;
+            if(pokemonEvolutions.evolves.length > 1) {
+                middle = document.createElement('div');
+                middle.setAttribute('class', 'middle')
+                this.first.after(middle);
+            }
+
+            let i = 0;
+            pokemonEvolutions.evolutions.map((evolution) => {
                 i++;
-                if(i > 2) {
+
+                if(pokemonEvolutions.evolves.length === 1 && pokemonEvolutions.evolutions.length > 3) {
                     this.last.classList.add('wrap');
                 }
-                if(i === 0) {
-                    this.first.innerHTML = this.returnEvolution(pokemonEvolutions, evolution, i);
-                } else {
-                    this.last.innerHTML += this.returnEvolution(pokemonEvolutions, evolution, i);
+
+                if(!(evolution instanceof Error)) {
+                    if(i === 1) {
+                        this.first.innerHTML = this.returnEvolution(pokemonEvolutions, evolution);
+                    } else if(pokemonEvolutions.evolves.includes(evolution)) {
+                        middle.innerHTML += this.returnEvolution(pokemonEvolutions, evolution);
+                    } else {
+                        this.last.innerHTML += this.returnEvolution(pokemonEvolutions, evolution);
+                    }
                 }
+
             }).join('');
         }
     }
 
-    returnEvolution(pokemonEvolutions, evolution, i) {
+    returnEvolution(pokemonEvolutions, evolution) {
         return `
                 <a href="pokemon-details.html?pokemonName=${evolution.name}&theme=${this.body.classList.contains('light')?'light':'dark'}">
                     <div class="evolution-info">

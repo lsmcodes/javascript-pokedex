@@ -125,14 +125,14 @@ class PokeApi {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemonSearch.toLowerCase()}`;
 
         try {
-            if (pokemonSearch > 1010) {
+            if (pokemonSearch > 1012) {
                 throw new error;
             }
 
             const response = await fetch(url);
             const pokemonData = await response.json();
             
-            if(pokemonData.id > 1010) {
+            if(pokemonData.id > 1012) {
                 throw new error;
             }
 

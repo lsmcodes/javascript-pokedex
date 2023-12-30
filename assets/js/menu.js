@@ -44,7 +44,7 @@ class Menu {
                 break;
             case '9':
                 pokedexConfig.offset = pokedexConfig.offsetGeneration = 905;
-                pokedexConfig.maxRecords = 1010;
+                pokedexConfig.maxRecords = 1012;
                 break;
             default:
                 pokedexConfig.offset = pokedexConfig.offsetGeneration = 0;

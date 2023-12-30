@@ -139,6 +139,13 @@ header {
     grid-template-columns: 50% 50%;
 }
 
+.evolution-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .stats-names {
     display: grid;
     grid-area: statName;
@@ -237,9 +244,8 @@ header {
         width: 100%;
     }
 
-    .first {
+    .evolution a {
         flex-direction: row;
-        flex: 1;
     }
 
     .last {
